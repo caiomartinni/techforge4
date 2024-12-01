@@ -1,0 +1,39 @@
+abstract class Animal {
+  private energia: number;
+
+  constructor() {
+    this.energia = 50;
+  }
+
+  comer(): void {
+    this.energia += 10; 
+    console.log(`${this.constructor.name} está se alimentando. Energia aumentada.`);
+  }
+
+  statusEnergia(): void {
+    console.log(`${this.constructor.name} tem ${this.energia} de energia.`);
+  }
+
+  abstract agir(): void;
+}
+
+class Leao extends Animal {
+  agir(): void {
+    console.log("Leão vai caçar.");
+    this.comer(); 
+    console.log("Leão caçou e recuperou energia.");
+  }
+}
+
+class Passaro extends Animal {
+  agir(): void {
+    console.log("Pássaro vai se alimentar.");
+    this.comer(); 
+    console.log("Pássaro se alimentou e aumentou energia.");
+  }
+}
+
+function exibirStatusAnimal(animal: Animal): void {
+  animal.agir();
+  animal.statusEnergia();
+}

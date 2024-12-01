@@ -1,0 +1,42 @@
+abstract class Funcionario {
+    private nome: string;
+    private salario: number;
+  
+    constructor(nome: string, salario: number) {
+      this.nome = nome;
+      this.salario = salario;
+    }
+  
+    abstract calcularBonus(): number;
+  
+    calcularSalarioComBonus(): number {
+      return this.salario + this.calcularBonus();
+    }
+  
+    getSalario(): number {
+      return this.salario;
+    }
+  
+    exibirInformacoes(): void {
+      console.log(`${this.nome} tem um salário final de ${this.calcularSalarioComBonus()}`);
+    }
+  }
+  
+  class Gerente extends Funcionario {
+    calcularBonus(): number {
+      return this.getSalario() * 0.10; 
+    }
+  }
+  
+  class Operario extends Funcionario {
+    calcularBonus(): number {
+      return this.getSalario() * 0.05; 
+    }
+  }
+  
+  function calcularSalariosComBonus(funcionarios: Funcionario[]): void {
+    funcionarios.forEach(funcionario => {
+      funcionario.exibirInformacoes();
+    });
+  }
+  
